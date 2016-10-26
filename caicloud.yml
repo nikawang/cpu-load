@@ -17,7 +17,7 @@ integration:
     - curl localhost:8080
 deploy:
   - application: cpuload
-    cluster: 240ec41a-d576-4b81-938c-b56285afd8cc
-    partition: app1
+    cluster: 89bb9209-a1dd-4029-8f5f-5f9c637a9eda
+    partition: cpuload
     containers:
     - cpuload
