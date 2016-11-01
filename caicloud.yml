@@ -10,11 +10,6 @@ pre_build:
     - /root/cpu-load/target/cpu-load-0.0.1-SNAPSHOT.war
 build:
   dockerfile_name: Dockerfile
-integration:
-  ports:
-    - "8080:8080" 
-  commands:
-    - curl localhost:8080
 deploy:
   - application: cpuload
     cluster: 89bb9209-a1dd-4029-8f5f-5f9c637a9eda
