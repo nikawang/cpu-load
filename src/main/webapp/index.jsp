@@ -71,7 +71,7 @@
 Nihao!
 Hallo!!
 Aloha!!
-        <div><!-- a -->
+        <div>
 		<img src="./cloud.png" />
         </div> 
 	<div>
