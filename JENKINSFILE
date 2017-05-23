@@ -1,0 +1,96 @@
+def registry = "cargo.caicloudprivatetest.com"
+def cpuload_tag = "caicloud/cpuload:${env.BUILD_NUM}"
+
+podTemplate(
+    cloud: 'caicloudstack',
+    namespace: 'caicloud',
+    name: 'jenkins',
+    label: 'cpuload',
+    idleMinutes: 1440,
+    containers: [
+        // jnlp with kubectl
+        containerTemplate(
+            name: 'jnlp',
+            alwaysPullImage: true,
+            image: 'cargo.caicloudprivatetest.com/caicloud/jnlp:2.62',
+            command: '',
+            args: '${computer.jnlpmac} ${computer.name}',
+        ),
+        // docker in docker
+        containerTemplate(
+            name: 'dind', 
+            image: 'cargo.caicloudprivatetest.com/caicloud/docker:17.03-dind', 
+            ttyEnabled: true, 
+            command: '', 
+            args: '--host=unix:///home/jenkins/docker.sock',
+            privileged: true,
+        ),
+        // golang with docker client
+        containerTemplate(
+            name: 'maven',
+            image: 'cargo.caicloudprivatetest.com/caicloud/maven:test',
+            ttyEnabled: true,
+            command: '',
+            args: '',
+            envVars: [
+                containerEnvVar(key: 'DOCKER_HOST', value: 'unix:///home/jenkins/docker.sock'),
+                containerEnvVar(key: 'DOCKER_API_VERSION', value: '1.26')
+            ],
+        ),
+    ]
+) {
+    node('cpuload') {
+        stage('Checkout') {
+            checkout scm
+        }
+        container('maven') {
+            ansiColor('xterm') {
+
+                stage("Complie") {
+                    sh('''
+                        set -e 
+                        echo "startting to run unit test and package the binary"
+                        mvn clean install 
+                        cp ./target/cpu-load-0.0.1-SNAPSHOT.war . 
+                    ''')
+                }
+
+                stage('Run e2e test') {
+                    if (params.integration) {
+                        echo "exec integration"
+                        sh('''
+                            set -e
+                            echo "Run the integration test"
+                        ''')
+                    } else {
+                        echo "skip integration"
+                    }
+                }
+            }
+
+            stage("Build image and publish") {
+                if (params.publish) {
+                   echo "exec publish"
+                   sh "docker build -t ${cpuload_tag} ."
+
+                   docker.withRegistry("https://${registry}", "cargo") {
+                       docker.image(cpuload_tag).push()
+	               }
+
+                } else {
+                    echo "skip publish"	
+                }
+            }
+        }
+
+        stage("deploy") {
+            echo "exec deploy"
+
+            withCredentials([[$class: 'FileBinding', credentialsId: 'kubeconfig-caicloudstack', variable: 'SECRET_FILE']]) {
+               sh("""
+                   kubectl --kubeconfig=$SECRET_FILE --namespace pay get deploy cpuload -o yaml | sed 's/cpuload:.*\$/cpuload:${params.imageTag}/' | kubectl --kubeconfig=$SECRET_FILE --namespace cyclone replace -f -
+                 """)
+               }
+        }
+    }
+}
