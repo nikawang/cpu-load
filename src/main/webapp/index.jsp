@@ -68,11 +68,7 @@
 
 </script>
 <body>
-Nihao!
-Hallo!!
-Aloha!!
         <div>
-		<img src="./cloud.png" />
         </div> 
 	<div>
 		<input type="button" id="addButton" onClick="add()" value="Ôö¼Ó"/>
