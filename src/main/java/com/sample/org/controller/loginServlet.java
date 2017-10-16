@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.PrintWriter;
 
 import javax.servlet.http.Cookie;
+import javax.servlet.RequestDispatcher;
 
 
 public class loginServlet extends HttpServlet {
@@ -54,7 +55,8 @@ public class loginServlet extends HttpServlet {
 		Cookie ck = new Cookie("auth", un);
 		ck.setMaxAge(600);
 		response.addCookie(ck);
-		response.sendRedirect(request.getContextPath() + "/cpuload.jsp");
+		RequestDispatcher disp = request.getRequestDispatcher(request.getContextPath() + "/cpuload.jsp");
+		disp.forward(request, response);
 	}
 
 	/**
