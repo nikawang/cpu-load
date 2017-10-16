@@ -54,7 +54,7 @@ public class loginServlet extends HttpServlet {
 		Cookie ck = new Cookie("auth", un);
 		ck.setMaxAge(600);
 		response.addCookie(ck);
-		response.sendRedirect("cpuload.jsp");
+		response.sendRedirect(request.getContextPath() + "/cpuload.jsp");
 	}
 
 	/**
