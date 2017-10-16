@@ -82,10 +82,13 @@
 			}
 			if (authCookie == null)
 			{
-				response.sendRedirect("index.jsp");
+				RequestDispatcher disp = request.getRequestDispatcher(request.getContextPath() + "/cpuload.jsp");
+				disp.forward(request, response);
 				return;
 			}
 		} else {
+			RequestDispatcher disp = request.getRequestDispatcher(request.getContextPath() + "/cpuload.jsp");
+			disp.forward(request, response);
 			response.sendRedirect("index.jsp");
 			return; // to stop further execution
 		}
