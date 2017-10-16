@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=GBK">
 <title>CPULoad</title>
 </head>
-<script src="jquery-2.1.1.js"></script>
+<script src="../../jquery-2.1.1.js"></script>
 <script type="text/javascript">
 
 	function add(){
