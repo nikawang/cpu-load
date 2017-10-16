@@ -94,7 +94,7 @@
 		}
 	%>
 
-        <div> °æ±¾1
+        <div> Version 1
         </div>
         <p>Welcome: <%=authCookie.getValue()%>.
 	<div>
