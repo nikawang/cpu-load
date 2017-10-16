@@ -8,10 +8,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
-import com.sample.org.utils.CustomThread;
-import com.sample.org.utils.MyThreads;
-
 import java.io.PrintWriter;
 
 import javax.servlet.http.Cookie;
