@@ -74,6 +74,7 @@
 		if (cks != null) {
 			for (int i = 0; i < cks.length; i++) {
 				String name = cks[i].getName();
+				System.out.println(name);
 				if (name.equals("auth")) {
 					authCookie = cks[i];
 					break; // exit the loop and continue the page
