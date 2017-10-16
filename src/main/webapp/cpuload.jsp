@@ -98,14 +98,14 @@
         </div>
         <p>Welcome: <%=authCookie.getValue()%>.
 	<div>
-		<input type="button" id="addButton" onClick="add()" value="增加"/>
+		<input type="button" id="addButton" onClick="add()" value="Add"/>
 		<input type="text" id="num"></input>
 		<span>&nbsp;&nbsp;</span>
 	    <span id="addcount"></span>
 	</div>
 	<br/>
 	<div>
-		<input type="button" id="reduceButton" onClick="reduce()" value="减少"/>
+		<input type="button" id="reduceButton" onClick="reduce()" value="Reduce"/>
 		<input  type="text" id="num2"></input>
 		<span>&nbsp;&nbsp;</span>
 	    <span id="redcount"></span>
@@ -118,7 +118,7 @@
 	</div>
 	<br/>
 	<div>
-		<input type="button" id="env" onClick="getenv()" value="环境变量"/>
+		<input type="button" id="env" onClick="getenv()" value="ENV"/>
 		<div id="envval"></div>
 	</div>
 
