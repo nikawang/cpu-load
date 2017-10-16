@@ -68,8 +68,31 @@
 
 </script>
 <body>
+<%
+		Cookie[] cks = request.getCookies();
+		Cookie authCookie = null;
+		if (cks != null) {
+			for (int i = 0; i < cks.length; i++) {
+				String name = cks[i].getName();
+				if (name.equals("auth")) {
+					authCookie = cks[i]
+					break; // exit the loop and continue the page
+				}
+			}
+			if (authCookie == null)
+			{
+				response.sendRedirect("index.jsp");
+				return;
+			}
+		} else {
+			response.sendRedirect("index.jsp");
+			return; // to stop further execution
+		}
+	%>
+
         <div> °æ±¾1
         </div>
+        <p>Welcome: <%=authCookie.getValue()%>.
 	<div>
 		<input type="button" id="addButton" onClick="add()" value="Ôö¼Ó"/>
 		<input type="text" id="num"></input>
