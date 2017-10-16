@@ -75,7 +75,7 @@
 			for (int i = 0; i < cks.length; i++) {
 				String name = cks[i].getName();
 				if (name.equals("auth")) {
-					authCookie = cks[i]
+					authCookie = cks[i];
 					break; // exit the loop and continue the page
 				}
 			}
