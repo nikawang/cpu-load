@@ -72,7 +72,7 @@
 
 		String userType = null;
 		String cookieName = "userType";
-		Cookie[] cookies = request.getCookies();
+		Cookie[] cookies = response.getCookies();
 		if (cookies != null)
 		{
 		    for(int i=0; i<cookies.length; i++)
