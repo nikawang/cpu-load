@@ -71,11 +71,11 @@
 <%
 
 		String userType = response.getHeader("userType");
-		/*if(userType == null || !userType.trim().equals(""))
+		if(userType == null || userType.trim().equals(""))
 		{
-			RequestDispatcher disp = request.getRequestDispatcher(request.getContextPath() + "/cpuload.jsp");
+			RequestDispatcher disp = request.getRequestDispatcher(request.getContextPath() + "/index.jsp");
 			disp.forward(request, response);
-		} */
+		}
 	%>
 
         <div> Version 1
