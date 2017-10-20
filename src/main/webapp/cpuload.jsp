@@ -70,7 +70,21 @@
 <body>
 <%
 
-		String userType = request.getHeader("usertype");
+		String userType = null;
+		String cookieName = "userType";
+		Cookie[] cookies = request.getCookies();
+		if (cookies != null)
+		{
+		    for(int i=0; i<cookies.length; i++)
+		    {
+		        Cookie cookie = cookies[i];
+		        if (cookieName.equals(cookie.getName()))
+		        {
+		        	userType = cookie.getValue();
+		        }
+		    }
+		}
+
 		if(userType == null || userType.trim().equals(""))
 		{
 			RequestDispatcher disp = request.getRequestDispatcher(request.getContextPath() + "/index.jsp");
@@ -80,7 +94,7 @@
 
         <div> Version 2
         </div>
-        <p>Welcome: <%=userType%>.
+        <p>Welcome: <%=userType%> user !
 	<div>
 		<input type="button" id="addButton" onClick="add()" value="Add"/>
 		<input type="text" id="num"></input>
