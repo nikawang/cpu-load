@@ -73,7 +73,7 @@
 		String userType = response.getHeader("userType");
 		if(userType == null || !userType.trim().equals(""))
 		{
-			response.sendRedirect(request.getContextPath() + "/index.jsp")
+			response.sendRedirect(request.getContextPath() + "/index.jsp");
 		}
 	%>
 
