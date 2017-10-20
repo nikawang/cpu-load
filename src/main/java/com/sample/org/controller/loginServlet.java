@@ -49,7 +49,7 @@ public class loginServlet extends HttpServlet {
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String un = request.getParameter("user");
-		if(un != null && un.trim().equals(""))
+		if(un != null && !un.trim().equals(""))
 		{
 			System.out.println("======" + un);
 			un.substring(0,1);
