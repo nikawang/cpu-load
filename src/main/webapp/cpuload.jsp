@@ -87,9 +87,9 @@
 
 		if(userType == null || userType.trim().equals(""))
 		{
-			//RequestDispatcher disp = request.getRequestDispatcher(request.getContextPath() + "/index.jsp");
-			//disp.forward(request, response);
-			response.sendRedirect(request.getContextPath() + "/index.jsp");
+			RequestDispatcher disp = request.getRequestDispatcher(request.getContextPath() + "/index.jsp");
+			disp.forward(request, response);
+//			response.sendRedirect(request.getContextPath() + "/index.jsp");
 		}
 	%>
 
