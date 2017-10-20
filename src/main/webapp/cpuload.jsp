@@ -69,34 +69,18 @@
 </script>
 <body>
 <%
-		Cookie[] cks = request.getCookies();
-		Cookie authCookie = null;
-		if (cks != null) {
-			for (int i = 0; i < cks.length; i++) {
-				String name = cks[i].getName();
-				System.out.println(name);
-				if (name.equals("userType")) {
-					authCookie = cks[i];
-					break; // exit the loop and continue the page
-				}
-			}
-			if (authCookie == null)
-			{
-				RequestDispatcher disp = request.getRequestDispatcher(request.getContextPath() + "/index.jsp");
-				disp.forward(request, response);
-				return;
-			}
-		} else {
+
+		String userType = request.getHeader("userType");
+		if(userType != null && !userType.trim().equals(""))
+		{
 			RequestDispatcher disp = request.getRequestDispatcher(request.getContextPath() + "/index.jsp");
 			disp.forward(request, response);
-			//response.sendRedirect("index.jsp");
-			return; // to stop further execution
 		}
 	%>
 
         <div> Version 1
         </div>
-        <p>Welcome: <%=authCookie.getValue()%>.
+        <p>Welcome: <%=userType%>.
 	<div>
 		<input type="button" id="addButton" onClick="add()" value="Add"/>
 		<input type="text" id="num"></input>
