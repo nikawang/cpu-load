@@ -6,7 +6,8 @@
 </head>
 <body>
 <%
-response.sendRedirect(request.getContextPath() + "/cpuload.jsp");
+RequestDispatcher disp = request.getRequestDispatcher(request.getContextPath() + "/cpuload.jsp");
+         disp.forward(request, response);
 %>
 
 </form>
