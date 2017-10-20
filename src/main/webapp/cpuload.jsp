@@ -81,9 +81,22 @@
 		        if (cookieName.equals(cookie.getName()))
 		        {
 		        	userType = cookie.getValue();
+		        	HttpSession session = request.getSession();
+					if(!session.getAttribute(""userType).equals(userType))
+					{
+%>
+
+<script type="text/javascript">
+window.location.reload();
+</script>
+<%
+
+					}
 		        }
 		    }
 		}
+
+
 
 //		if(userType == null || userType.trim().equals(""))
 //		{

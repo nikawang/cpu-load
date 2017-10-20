@@ -49,13 +49,18 @@ public class loginServlet extends HttpServlet {
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String un = request.getParameter("user");
+		HttpSession session = request.getSession();
+
+    	session.setAttribute("UserName", un);
 		if(un != null && !un.trim().equals(""))
 		{
 			System.out.println("======" + un);
-			un.substring(0,1);
-			Cookie userCookie = new Cookie("userType", un);
+			String userTepe = un.substring(0,1);
+			Cookie userCookie = new Cookie("userType", userType);
+			session.setAttribute("userType", userType);
 			userCookie.setMaxAge(60*60*24*365); //Store cookie for 1 year
 			response.addCookie(userCookie);
+			request
 		}
 		else
 		{
@@ -64,7 +69,7 @@ public class loginServlet extends HttpServlet {
 		 	return;
 		}
 
-		 RequestDispatcher disp = request.getRequestDispatcher(request.getContextPath() + "/forward.jsp");
+		 RequestDispatcher disp = request.getRequestDispatcher(request.getContextPath() + "/cpuload.jsp");
 		 disp.forward(request, response);
 
 		//response.sendRedirect(request.getContextPath() + "/cpuload.jsp");
