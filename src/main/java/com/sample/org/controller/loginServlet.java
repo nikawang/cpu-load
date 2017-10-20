@@ -51,7 +51,6 @@ public class loginServlet extends HttpServlet {
 		String un = request.getParameter("user");
 		HttpSession session = request.getSession();
 
-    	session.setAttribute("UserName", un);
 		if(un != null && !un.trim().equals(""))
 		{
 			System.out.println("======" + un);
@@ -60,7 +59,6 @@ public class loginServlet extends HttpServlet {
 			session.setAttribute("userType", userType);
 			userCookie.setMaxAge(60*60*24*365); //Store cookie for 1 year
 			response.addCookie(userCookie);
-			request
 		}
 		else
 		{
