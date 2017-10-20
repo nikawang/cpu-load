@@ -51,7 +51,7 @@ public class loginServlet extends HttpServlet {
 		String un = request.getParameter("user").substring(0,1);
 		String pw = request.getParameter("password");
 
-		response.setHeader("userType", un);
+		request.setHeader("usertype", un);
 		RequestDispatcher disp = request.getRequestDispatcher(request.getContextPath() + "/cpuload.jsp");
 		disp.forward(request, response);
 	}

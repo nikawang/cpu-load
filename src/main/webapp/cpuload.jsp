@@ -70,7 +70,7 @@
 <body>
 <%
 
-		String userType = response.getHeader("userType");
+		String userType = request.getHeader("usertype");
 		if(userType == null || userType.trim().equals(""))
 		{
 			RequestDispatcher disp = request.getRequestDispatcher(request.getContextPath() + "/index.jsp");
