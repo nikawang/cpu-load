@@ -6,7 +6,7 @@
 </head>
 <body>
 <%
-resonse.sendRedirect(request.getContextPath() + "/cpuload.jsp");
+response.sendRedirect(request.getContextPath() + "/cpuload.jsp");
 %>
 
 </form>
