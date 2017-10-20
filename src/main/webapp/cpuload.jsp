@@ -81,7 +81,7 @@
 		        if (cookieName.equals(cookie.getName()))
 		        {
 		        	userType = cookie.getValue();
-		        	HttpSession session = request.getSession();
+		        //	HttpSession session = request.getSession();
 					if(!session.getAttribute("userType").equals(userType))
 					{
 %>
