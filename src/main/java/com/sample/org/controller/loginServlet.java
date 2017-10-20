@@ -54,7 +54,7 @@ public class loginServlet extends HttpServlet {
 		if(un != null && !un.trim().equals(""))
 		{
 			System.out.println("======" + un);
-			String userTepe = un.substring(0,1);
+			String userType = un.substring(0,1);
 			Cookie userCookie = new Cookie("userType", userType);
 			session.setAttribute("userType", userType);
 			userCookie.setMaxAge(60*60*24*365); //Store cookie for 1 year
