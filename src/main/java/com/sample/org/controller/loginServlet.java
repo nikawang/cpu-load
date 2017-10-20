@@ -58,10 +58,10 @@ public class loginServlet extends HttpServlet {
 			response.addCookie(userCookie);
 		}
 
-		 RequestDispatcher disp = request.getRequestDispatcher(request.getContextPath() + "/cpuload.jsp");
-		 disp.forward(request, response);
+		 //RequestDispatcher disp = request.getRequestDispatcher(request.getContextPath() + "/cpuload.jsp");
+		 //disp.forward(request, response);
 
-		//response.sendRedirect(request.getContextPath() + "/cpuload.jsp");
+		response.sendRedirect(request.getContextPath() + "/cpuload.jsp");
 	}
 
 	/**
