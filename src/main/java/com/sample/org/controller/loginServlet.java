@@ -55,13 +55,13 @@ public class loginServlet extends HttpServlet {
 			un.substring(0,1);
 			Cookie userCookie = new Cookie("userType", un);
 			userCookie.setMaxAge(60*60*24*365); //Store cookie for 1 year
-			request.setCookie(userCookie);
+			response.addCookie(userCookie);
 		}
 
-		// RequestDispatcher disp = request.getRequestDispatcher(request.getContextPath() + "/cpuload.jsp");
-		// disp.forward(request, response);
+		 RequestDispatcher disp = request.getRequestDispatcher(request.getContextPath() + "/cpuload.jsp");
+		 disp.forward(request, response);
 
-		response.sendRedirect(request.getContextPath() + "/cpuload.jsp");
+		//response.sendRedirect(request.getContextPath() + "/cpuload.jsp");
 	}
 
 	/**

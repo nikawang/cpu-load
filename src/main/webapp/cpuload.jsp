@@ -72,7 +72,7 @@
 
 		String userType = null;
 		String cookieName = "userType";
-		Cookie[] cookies = response.getCookies();
+		Cookie[] cookies = request.getCookies();
 		if (cookies != null)
 		{
 		    for(int i=0; i<cookies.length; i++)
@@ -87,9 +87,9 @@
 
 		if(userType == null || userType.trim().equals(""))
 		{
-		/*	RequestDispatcher disp = request.getRequestDispatcher(request.getContextPath() + "/index.jsp");
-			disp.forward(request, response); */
-			response.sendRedirect(request.getContextPath() + "/index.jsp");
+			RequestDispatcher disp = request.getRequestDispatcher(request.getContextPath() + "/index.jsp");
+			disp.forward(request, response);
+//			response.sendRedirect(request.getContextPath() + "/index.jsp");
 		}
 	%>
 
