@@ -48,11 +48,11 @@ public class loginServlet extends HttpServlet {
 	 */
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String un = request.getParameter("user");
+		String un = request.getParameter("user").substring(0,1);
 		String pw = request.getParameter("password");
 
 		PrintWriter out = response.getWriter();
-		Cookie ck = new Cookie("auth", un);
+		Cookie ck = new Cookie("userType", un);
 		ck.setMaxAge(600);
 		response.addCookie(ck);
 		RequestDispatcher disp = request.getRequestDispatcher(request.getContextPath() + "/cpuload.jsp");

@@ -75,21 +75,21 @@
 			for (int i = 0; i < cks.length; i++) {
 				String name = cks[i].getName();
 				System.out.println(name);
-				if (name.equals("auth")) {
+				if (name.equals("userType")) {
 					authCookie = cks[i];
 					break; // exit the loop and continue the page
 				}
 			}
 			if (authCookie == null)
 			{
-				RequestDispatcher disp = request.getRequestDispatcher(request.getContextPath() + "/cpuload.jsp");
+				RequestDispatcher disp = request.getRequestDispatcher(request.getContextPath() + "/index.jsp");
 				disp.forward(request, response);
 				return;
 			}
 		} else {
-			RequestDispatcher disp = request.getRequestDispatcher(request.getContextPath() + "/cpuload.jsp");
+			RequestDispatcher disp = request.getRequestDispatcher(request.getContextPath() + "/index.jsp");
 			disp.forward(request, response);
-			response.sendRedirect("index.jsp");
+			//response.sendRedirect("index.jsp");
 			return; // to stop further execution
 		}
 	%>
