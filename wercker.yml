@@ -1,6 +1,6 @@
 box:
   id: openjdk
-  tag: 8u131-jdk-alpine
+  tag: 8u141-jdk
 
 build:
   steps:
