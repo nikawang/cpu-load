@@ -1,0 +1,14 @@
+box:
+  id: openjdk
+  tag: 8u131-jdk-alpine
+
+build:
+  steps:
+    - java/maven:
+      goals: clean compile
+    - java/maven:
+      goals: install
+    # you should push your image now :)
+    #  - internal/docker-push:
+    #    repository: quay.io/myuser/myapp
+    #    tag: 1.0.0

@@ -52,7 +52,6 @@ public class reduceServlet extends HttpServlet {
 		}
 		ArrayList<CustomThread> list = MyThreads.getInstance().getList();
 		
-		
 		for (int i = 0; i < number; i++) {
 			if(list.size()>=0)
 			list.remove(list.size()-1).stop();
