@@ -1,5 +1,0 @@
-FROM index.caicloud.io/daniel/jenmav:static
-
-WORKDIR /root
-COPY . /root
-RUN mvn clean package
