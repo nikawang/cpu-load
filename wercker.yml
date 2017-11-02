@@ -12,15 +12,19 @@ build:
       goals: install
       cache_repo: true
 deploy:
+  box: 
+    id: tomcat
+    tag: 8.5.23-jre8
   steps:
-    - minimum2scp/install-docker:
-        path: /usr/local/bin/docker
-        version: 1.8.3
     - script: 
       name: Build Image
-      code: docker build -t burning1docker/cpuload:V2 .
-    - script:
-      name: Push Image
       code: |
-        docker login -e none -u $DOCKER_USER -p $DOCKER_PASSWORD docker.io
-        docker push burning1docker/cpuload:V2
+      rm -rf /usr/local/tomcat/webapps/*
+      cp cpu-load.war /usr/local/tomcat/webapps/ROOT.war
+    - internal/docker-push:
+      username: $DOCKER_USER
+      password: $DOCKER_PASSWORD
+      repository: burning1docker/cpuload
+      tag: V2
+      ports: 8080
+      cmd: "/usr/local/tomcat/bin/catalina.sh run"
