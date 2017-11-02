@@ -2,7 +2,7 @@ box:
   id: openjdk
   tag: 8u141-jdk
 
-build:
+compile:
   steps:
     - java/maven:
       version: 3.5.2
@@ -10,11 +10,16 @@ build:
     - java/maven:
       version: 3.5.2
       goals: install
-    # you should push your image now :)
+      cache_repo: true
+build:
+  steps:
+    - script: 
+      name: Build Image
+      code: docker build -t burning1docker/cpuload:V2 .
 publish:
   steps:
-      - internal/docker-push:
-        username: $DOCKER_USER
-        password: $DOCKER_PASSWORD
-        repository: burning1docker/cpuload
-        tag: V2
+    - script:
+      name: Push Image
+      code: |
+        docker login -e none -u $DOCKER_USER -p $DOCKER_PASSWORD docker.io
+        docker push burning1docker/cpuload:V2
