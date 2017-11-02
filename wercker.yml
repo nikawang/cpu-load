@@ -2,7 +2,7 @@ box:
   id: openjdk
   tag: 8u141-jdk
 
-compile:
+build:
   steps:
     - java/maven:
       version: 3.5.2
@@ -11,13 +11,14 @@ compile:
       version: 3.5.2
       goals: install
       cache_repo: true
-build:
+deploy:
   steps:
+    - minimum2scp/install-docker:
+        path: /usr/local/bin/docker
+        version: 1.8.3
     - script: 
       name: Build Image
       code: docker build -t burning1docker/cpuload:V2 .
-publish:
-  steps:
     - script:
       name: Push Image
       code: |
