@@ -11,7 +11,7 @@ build:
       version: 3.5.2
       goals: install
       cache_repo: true
-deploy:
+publish:
   box: 
     id: tomcat
     tag: 8.5.23-jre8
@@ -28,3 +28,11 @@ deploy:
       tag: V2
       ports: 8080
       cmd: "/usr/local/tomcat/bin/catalina.sh run"
+  deploy:
+    steps:
+      - kubectl:
+        server: $K8MASTER
+        token: $K8TOKEN
+        insecure-skip-tls-verify: true
+        command: kubectl set image deployments/cpuloadv2 cpuload=burning1docker/cpuload:V2
+    
