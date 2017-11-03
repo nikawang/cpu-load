@@ -25,7 +25,7 @@ publish:
       username: $DOCKER_USER
       password: $DOCKER_PASSWORD
       repository: burning1docker/cpuload
-      tag: V2
+      tag: $WERCKER_GIT_COMMIT
       ports: 8080
       cmd: "/usr/local/tomcat/bin/catalina.sh run"
 deploy:
@@ -34,5 +34,5 @@ deploy:
         server: $K8MASTER
         token: $K8TOKEN
         insecure-skip-tls-verify: true
-        command: set image deployments/cpuloadv2 cpuload=burning1docker/cpuload:V1
+        command: set image deployments/cpuloadv2 cpuload=burning1docker/cpuload:$WERCKER_GIT_COMMIT
     
