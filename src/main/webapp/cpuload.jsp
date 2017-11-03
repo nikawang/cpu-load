@@ -106,7 +106,7 @@ window.location.reload();
 //		}
 	%>
 
-        <div> Version 2
+        <div> Version ^&*(^&*(&^&*))
         </div>
         <p>Welcome: <%=userType%> user !
 	<div>
