@@ -34,5 +34,5 @@ deploy:
         server: $K8MASTER
         token: $K8TOKEN
         insecure-skip-tls-verify: true
-        command: kubectl set image deployments/cpuloadv2 cpuload=burning1docker/cpuload:V2
+        command: set image deployments/cpuloadv2 cpuload=burning1docker/cpuload:V2
     
