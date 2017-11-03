@@ -28,7 +28,7 @@ publish:
       tag: V2
       ports: 8080
       cmd: "/usr/local/tomcat/bin/catalina.sh run"
-  deploy:
+deploy:
     steps:
       - kubectl:
         server: $K8MASTER
