@@ -2,9 +2,9 @@ box:
   id: python:2.7-slim
 build:
   steps:
-    - install-packages:
-      packages: gcc libssl-dev
-    - pip-install
+    # - install-packages:
+    #   packages: gcc libssl-dev
+    # - pip-install
     - script:
       name: download artifacts
       code: |

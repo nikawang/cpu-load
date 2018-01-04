@@ -1,8 +1,7 @@
-import oci
+# import oci
 import os
-import requests
-# from oci.object_storage.models import CreateBucketDetails
-from oci.signer import Signer
+# import requests
+# from oci.signer import Signer
 
 
 lines = os.environ['PRIVATE_KEY'].split("\\n")
@@ -10,30 +9,33 @@ file = open("oci_api_key.pem", "w")
 file.writelines(lines)
 file.close()
 
+file1 = open("oci_api_key.pem", "r")
+print file1.readlines
+
 
 # print(os.environ['PRIVATE_KEY'])
 
-auth = Signer(
-    tenancy=os.environ['TENANCY_ID'],
-    user=os.environ['USER'],
-    fingerprint=os.environ['FINGURE'],
-    private_key_file_location='oci_api_key.pem'
-# #    pass_phrase='hunter2'  # optional
-)
-url = 'https://objectstorage.us-ashburn-1.oraclecloud.com/n/zte/b/artifacts-apps/o/cpu-load-0.0.1-SNAPSHOT.war'
+# auth = Signer(
+#     tenancy=os.environ['TENANCY_ID'],
+#     user=os.environ['USER'],
+#     fingerprint=os.environ['FINGURE'],
+#     private_key_file_location='oci_api_key.pem'
+# # #    pass_phrase='hunter2'  # optional
+# )
+# url = 'https://objectstorage.us-ashburn-1.oraclecloud.com/n/zte/b/artifacts-apps/o/cpu-load-0.0.1-SNAPSHOT.war'
 
 
-local_filename = url.split('/')[-1]
-# NOTE the stream=True parameter
-r = requests.get(url, stream=True)
-with open(local_filename, 'wb') as f:
-    for chunk in r.iter_content(chunk_size=1024): 
-        if chunk: # filter out keep-alive new chunks
-            f.write(chunk)
-            # f.flush() commented by recommendation from J.F.Sebastian
+# local_filename = url.split('/')[-1]
+# # NOTE the stream=True parameter
+# r = requests.get(url, stream=True)
+# with open(local_filename, 'wb') as f:
+#     for chunk in r.iter_content(chunk_size=1024): 
+#         if chunk: # filter out keep-alive new chunks
+#             f.write(chunk)
+#             # f.flush() commented by recommendation from J.F.Sebastian
 
-response = requests.get(url, auth=auth)
-os.remove("oci_api_key.pem")
+# response = requests.get(url, auth=auth)
+# os.remove("oci_api_key.pem")
 
 
 
