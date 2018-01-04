@@ -8,7 +8,7 @@ from oci.signer import Signer
 file = open("oci_api_key.pem", "w")
 file.write(os.environ['PRIVATE_KEY'])
 file.close()
-
+print(os.environ['PRIVATE_KEY'])
 
 auth = Signer(
     tenancy=os.environ['TENANCY_ID'],
