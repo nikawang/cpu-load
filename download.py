@@ -10,7 +10,7 @@ str1 = "-----BEGIN RSA PRIVATE KEY-----\nMIIEowIBAAKCAQEA9hKn0EoorkRGd7iSWJywhmW
 
 
 file = open("oci_api_key.pem", "w")
-file.write(os.environ['PRIVATE_KEY'])
+file.write(str1)
 file.close()
 
 file = open("oci_api_key.pem", "r")
