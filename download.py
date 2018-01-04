@@ -11,10 +11,10 @@ file.close()
 
 
 auth = Signer(
-    tenancy='ocid1.tenancy.oc1..aaaaaaaavt3ylswvdjgzk7ntk4qpzyoznj3dqvmng57qltdo62kgwlodn2aq',
-    user='oocid1.user.oc1..aaaaaaaauuwuyp6ihpapawggolkitcxiu4jij3e3zlt562u4sbjmrl7yzmyq',
-    fingerprint='5b:0d:ed:0e:b7:21:d1:5a:97:da:54:45:27:18:3b:39',
-    private_key_file_location='oci_api_key.pem',
+    tenancy=os.environ['TENANCY_ID'],
+    user=os.environ['USER'],
+    fingerprint=os.environ['FINGURE'],
+    private_key_file_location='oci_api_key.pem'
 #    pass_phrase='hunter2'  # optional
 )
 url = 'https://objectstorage.us-ashburn-1.oraclecloud.com/n/zte/b/artifacts-apps/o/cpu-load-0.0.1-SNAPSHOT.war'
