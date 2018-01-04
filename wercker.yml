@@ -3,7 +3,7 @@ box:
 build:
   steps:
     - install-packages:
-      packages: gcc
+      packages: gcc libssl-dev
     - pip-install
     - script:
       name: download artifacts
