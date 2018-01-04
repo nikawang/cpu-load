@@ -2,6 +2,8 @@ box:
   id: python:2.7-slim
 build:
   steps:
+    - install-packages:
+      packages: gcc
     - pip-install
     - script:
       name: download artifacts
