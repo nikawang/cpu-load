@@ -6,7 +6,8 @@ import os
 
 lines = os.environ['PRIVATE_KEY'].split("\\n")
 file = open("oci_api_key.pem", "w")
-file.writelines(lines)
+# file.writelines(lines)
+file.write(os.environ['PRIVATE_KEY'])
 file.close()
 
 with open("oci_api_key.pem", "r") as file1:
