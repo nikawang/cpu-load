@@ -1,16 +1,12 @@
 box:
-  id: openjdk
-  tag: 8u141-jdk
-
+  id: python:2.7-slim
 build:
   steps:
-    - java/maven:
-      version: 3.5.2
-      goals: clean compile
-    - java/maven:
-      version: 3.5.2
-      goals: install
-      cache_repo: true
+    - pip installls
+    - script:
+      name: download artifacts
+      code: |
+        python download.py
 publish:
   box: 
     id: tomcat
@@ -20,7 +16,7 @@ publish:
       name: Build Image
       code: |
         rm -rf /usr/local/tomcat/webapps/*
-        cp ./target/cpu-load-0.0.1-SNAPSHOT.war /usr/local/tomcat/webapps/ROOT.war
+        cp ./cpu-load-0.0.1-SNAPSHOT.war /usr/local/tomcat/webapps/ROOT.war
     - internal/docker-push:
       username: $DOCKER_USER
       password: $DOCKER_PASSWORD
@@ -34,5 +30,5 @@ deploy:
         server: $K8MASTER
         token: $K8TOKEN
         insecure-skip-tls-verify: true
-        command: set image deployments/cpuloadv2 cpuload=burning1docker/cpuload:$WERCKER_GIT_COMMIT
+        command: set image deployments/cpuload cpuload=burning1docker/cpuload:$WERCKER_GIT_COMMIT -n burningluffy1
     
