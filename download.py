@@ -9,8 +9,10 @@ file = open("oci_api_key.pem", "w")
 file.writelines(lines)
 file.close()
 
-file1 = open("oci_api_key.pem", "r")
-print file1.readlines
+with open("oci_api_key.pem", "r") as file1:
+    data=file1.read()
+
+print data
 
 
 # print(os.environ['PRIVATE_KEY'])
