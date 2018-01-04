@@ -2,7 +2,7 @@ box:
   id: python:2.7-slim
 build:
   steps:
-    - pip install
+    - pip install -r requirements.txt
     - script:
       name: download artifacts
       code: |
