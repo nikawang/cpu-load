@@ -5,9 +5,7 @@ import requests
 from oci.signer import Signer
 
 
-lines = os.environ['PRIVATE_KEY'].split("\n")
-
-
+lines = os.environ['PRIVATE_KEY'].split("\\n")
 file = open("oci_api_key.pem", "w")
 file.writelines(lines)
 file.close()
