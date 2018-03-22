@@ -1,15 +1,17 @@
 box:
-  id: python:2.7-slim
+  id: openjdk
+  tag: 8u141-jdk
+
 build:
   steps:
-    - install-packages:
-      packages: gcc libssl-dev
-    - pip-install
-    - script:
-      name: download artifacts
-      code: |
-        python download.py
-publish:
+    - java/maven:
+      version: 3.5.2
+      goals: clean compile
+    - java/maven:
+      version: 3.5.2
+      goals: install
+      cache_repo: true
+deploy:
   box: 
     id: tomcat
     tag: 8.5.23-jre8
@@ -18,19 +20,11 @@ publish:
       name: Build Image
       code: |
         rm -rf /usr/local/tomcat/webapps/*
-        cp ./cpu-load-0.0.1-SNAPSHOT.war /usr/local/tomcat/webapps/ROOT.war
+        cp ./target/cpu-load-0.0.1-SNAPSHOT.war /usr/local/tomcat/webapps/ROOT.war
     - internal/docker-push:
       username: $DOCKER_USER
       password: $DOCKER_PASSWORD
       repository: burning1docker/cpuload
-      tag: $WERCKER_GIT_COMMIT
+      tag: V2
       ports: 8080
       cmd: "/usr/local/tomcat/bin/catalina.sh run"
-deploy:
-    steps:
-      - kubectl:
-        server: $K8MASTER
-        token: $K8TOKEN
-        insecure-skip-tls-verify: true
-        command: set image deployments/cpuload cpuload=burning1docker/cpuload:$WERCKER_GIT_COMMIT -n burningluffy1
-    
