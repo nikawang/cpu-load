@@ -13,7 +13,7 @@
 		var num=document.getElementById ("num").value;
 		$.ajax({
 			type: 'POST',
-			url: '${pageContext.request.contextPath}/servlet/addServlet',
+			url: '${requestScope['javax.servlet.forward.request_uri']}/servlet/addServlet',
 			data:{
 				"num":num
 			},
@@ -58,7 +58,7 @@
 	function getcpuval(){
 		$.ajax({
 			type: 'POST',
-			url: '/cpuload/servlet/getCpuRatioServlet',
+			url: '${requestScope['javax.servlet.forward.request_uri']}/servlet/getCpuRatioServlet',
 			dataType: 'text',
 			success:function(obj){
 			    $("#cpucon").text(obj.toString());
