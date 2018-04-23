@@ -25,6 +25,6 @@ deploy:
       username: $DOCKER_USER
       password: $DOCKER_PASSWORD
       repository: burning1docker/cpuload
-      tag: V2
+      tag: $TAG
       ports: 8080
       cmd: "/usr/local/tomcat/bin/catalina.sh run"
