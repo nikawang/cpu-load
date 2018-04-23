@@ -13,7 +13,7 @@
 		var num=document.getElementById ("num").value;
 		$.ajax({
 			type: 'POST',
-			url: '${request.contextPath}/servlet/addServlet',
+			url: '/cpuload/servlet/addServlet',
 			data:{
 				"num":num
 			},
@@ -43,7 +43,7 @@
 	function getenv(){
 		$.ajax({
 			type: 'POST',
-			url: '${pageContext.request.contextPath}/servlet/getEnvServlet',
+			url: '/cpuload/servlet/getEnvServlet',
 			dataType: 'text',
 			success:function(obj){
 			    var arrayObj = new Array();
@@ -58,7 +58,7 @@
 	function getcpuval(){
 		$.ajax({
 			type: 'POST',
-			url: '${pageContext.request.contextPath}/servlet/getCpuRatioServlet',
+			url: '/cpuload/servlet/getCpuRatioServlet',
 			dataType: 'text',
 			success:function(obj){
 			    $("#cpucon").text(obj.toString());
