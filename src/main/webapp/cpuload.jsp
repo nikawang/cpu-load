@@ -13,7 +13,7 @@
 		var num=document.getElementById ("num").value;
 		$.ajax({
 			type: 'POST',
-			url: '/cpuload/servlet/addServlet',
+			url: '${pageContext.request.contextPath}/servlet/addServlet',
 			data:{
 				"num":num
 			},
