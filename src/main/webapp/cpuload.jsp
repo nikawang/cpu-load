@@ -11,9 +11,10 @@
 
 	function add(){
 		var num=document.getElementById ("num").value;
+		alert(${requestScope['javax.servlet.forward.request_uri']});
 		$.ajax({
 			type: 'POST',
-			url: '${requestScope['javax.servlet.forward.request_uri']}/../../servlet/addServlet',
+			url: '${requestScope['javax.servlet.forward.request_uri']}/../servlet/addServlet',
 			data:{
 				"num":num
 			},
@@ -29,7 +30,7 @@
 		var num=document.getElementById ("num2").value;
 		$.ajax({
 			type: 'POST',
-			url: '${requestScope['javax.servlet.forward.request_uri']}/../../servlet/reduceServlet',
+			url: '${requestScope['javax.servlet.forward.request_uri']}/../servlet/reduceServlet',
 			data:{
 				"num":num
 			},
@@ -43,7 +44,7 @@
 	function getenv(){
 		$.ajax({
 			type: 'POST',
-			url: '${requestScope['javax.servlet.forward.request_uri']}/../../servlet/getEnvServlet',
+			url: '${requestScope['javax.servlet.forward.request_uri']}/../servlet/getEnvServlet',
 			dataType: 'text',
 			success:function(obj){
 			    var arrayObj = new Array();
@@ -58,7 +59,7 @@
 	function getcpuval(){
 		$.ajax({
 			type: 'POST',
-			url: '${requestScope['javax.servlet.forward.request_uri']}/../../servlet/getCpuRatioServlet',
+			url: '${requestScope['javax.servlet.forward.request_uri']}/../servlet/getCpuRatioServlet',
 			dataType: 'text',
 			success:function(obj){
 			    $("#cpucon").text(obj.toString());
