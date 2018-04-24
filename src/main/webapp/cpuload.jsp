@@ -14,7 +14,7 @@
 		
 		$.ajax({
 			type: 'POST',
-			url: '../servlet/addServlet',
+			url: '${pageContext.request.contextPath}/servlet/addServlet',
 			data:{
 				"num":num
 			},
