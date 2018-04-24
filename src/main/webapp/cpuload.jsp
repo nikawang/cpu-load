@@ -107,7 +107,7 @@ window.location.reload();
 //		}
 	%>
 
-        <div> Version 1
+        <div> Version 2
         </div>
         <p>Welcome: <%=userType%> user !
 	<div>
