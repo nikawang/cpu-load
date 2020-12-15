@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
       - name: cpuload
-        image: burning1docker/cpuload:V2
+        image: 
         ports:
         - containerPort: 8080
