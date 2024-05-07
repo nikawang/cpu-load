@@ -49,7 +49,7 @@ jobs:
     - name: Replace image in deployment file and deploy to AKS
       run: |
         IMAGE_PATH="${{ vars.REGISTRY_URL }}/cpuload:${{ github.sha }}"
-        sed -i "s|image:.*|image: $IMAGE_PATH|" deployment.yaml
-        cat deployment.yaml
-        kubectl apply -f deployment.yaml
+        sed -i "s|image:.*|image: $IMAGE_PATH|" deployment.yml
+        cat deployment.yml
+        kubectl apply -f deployment.yml
         kubectl rollout status deployment/cpuload
