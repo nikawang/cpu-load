@@ -35,8 +35,13 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
     steps:
+    - name: Azure Login
+      uses: azure/login@v2
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+        environment: AzureChinaCloud
     - name: Set up Kubeconfig
-      uses: azure/aks-set-context@v1
+      uses: azure/aks-set-context@v3
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
         cluster-name: ${{ secrets.AKS_CLUSTER_NAME }}
