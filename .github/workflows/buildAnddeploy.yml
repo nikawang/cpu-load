@@ -44,8 +44,8 @@ jobs:
       uses: azure/aks-set-context@v3
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
-        cluster-name: ${{ secrets.AKS_CLUSTER_NAME }}
-        resource-group: ${{ secrets.AKS_RESOURCE_GROUP }}
+        cluster-name: ${{ vars.AKS_CLUSTER_NAME }}
+        resource-group: ${{ vars.AKS_RESOURCE_GROUP }}
     - name: Replace image in deployment file and deploy to AKS
       run: |
         IMAGE_PATH="${{ vars.REGISTRY_URL }}/cpuload:${{ github.sha }}"
