@@ -35,6 +35,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
     steps:
+    - uses: actions/checkout@v3
     - name: Azure Login
       uses: azure/login@v2
       with:
@@ -53,3 +54,10 @@ jobs:
         cat deployment.yml
         kubectl apply -f deployment.yml
         kubectl rollout status deployment/cpuload
+    - name: Writing to the workflow log
+      run: |
+        echo "Writing to the workflow log"
+        echo "::group::Writing to the log"
+        echo "::notice file=buildAnddeploy.yml,line=19,col=19,endColumn=22::Writing a notice"
+        echo "::warning file=buildAnddeploy.yml,line=29,col=19,endColumn=22::Writing a warning"
+        echo "::endgroup::"
