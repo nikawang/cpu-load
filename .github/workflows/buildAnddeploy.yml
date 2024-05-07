@@ -1,0 +1,42 @@
+
+name: Build & Deploy
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+  
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up JDK 11
+      uses: actions/setup-java@v3
+      with:
+        java-version: '11'
+        distribution: 'temurin'
+        cache: maven
+    - name: Build with Maven
+      run: mvn clean package
+    - name: Build image on ACR
+      uses: azure/CLI@61bb69d64d613b52663984bf12d6bac8fd7b3cc8
+      with:
+        azcliversion: 2.29.1
+        inlineScript: |
+          az configure --defaults acr=${{ env.AZURE_CONTAINER_REGISTRY }}
+          az acr build -t  -t ${{ env.REGISTRY_URL }}/cpuload:${{ github.sha }}
+    - name: Set up Kubeconfig
+      uses: azure/aks-set-context@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+        cluster-name: ${{ secrets.AKS_CLUSTER_NAME }}
+        resource-group: ${{ secrets.AKS_RESOURCE_GROUP }}
+    - name: Replace image in deployment file and deploy to AKS
+      run: |
+        IMAGE_PATH="${{ env.REGISTRY_URL }}/cpuload:${{ github.sha }}"
+        sed -i "s|image:.*|image: $IMAGE_PATH|" deployment.yaml
+        cat deployment.yaml
+        kubectl apply -f deployment.yaml
+        kubectl rollout status deployment/cpuload
