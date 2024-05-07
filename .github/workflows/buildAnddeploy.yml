@@ -21,14 +21,13 @@ jobs:
     - name: Build with Maven
       run: mvn clean package
     - name: Azure Login
-      uses: azure/login@14a755a4e2fd6dff25794233def4f2cf3f866955
+      uses: azure/login@v2
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
         environment: AzureChinaCloud
     - name: Build image on ACR
-      uses: azure/CLI@61bb69d64d613b52663984bf12d6bac8fd7b3cc8
+      uses: Azure/cli@v2.0.0
       with:
-        azcliversion: 2.29.1
         inlineScript: |
           az configure --defaults acr=${{ vars.AZURE_CONTAINER_REGISTRY }}
           az acr build -t  ${{ vars.REGISTRY_URL }}/cpuload:${{ github.sha }} .
