@@ -20,6 +20,11 @@ jobs:
         cache: maven
     - name: Build with Maven
       run: mvn clean package
+    - name: Azure Login
+      uses: azure/login@14a755a4e2fd6dff25794233def4f2cf3f866955
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+        environment: AzureChinaCloud
     - name: Build image on ACR
       uses: azure/CLI@61bb69d64d613b52663984bf12d6bac8fd7b3cc8
       with:
