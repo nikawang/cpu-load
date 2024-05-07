@@ -26,7 +26,7 @@ jobs:
         azcliversion: 2.29.1
         inlineScript: |
           az configure --defaults acr=${{ env.AZURE_CONTAINER_REGISTRY }}
-          az acr build -t  -t ${{ env.REGISTRY_URL }}/cpuload:${{ github.sha }}
+          az acr build -t  ${{ env.REGISTRY_URL }}/cpuload:${{ github.sha }}
     - name: Set up Kubeconfig
       uses: azure/aks-set-context@v1
       with:
